@@ -36,9 +36,29 @@ class App extends Component {
     })
   }
 
-  handleEdit = () => {
+  handleEditClick = () => {
     this.setState({
       editNote: true
+    })
+  }
+
+  handleEditSave = (e, chosen) => {
+    e.preventDefault()
+    return fetch(notesURL + `/${chosen.id}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(chosen)
+    })
+    .then(res => res.json())
+    .then(note => {
+      const newNote = this.state.notes.map(n => n.id === note.id ? note : n )
+      this.setState({
+        notes: newNote, 
+        editNote: false
+      })
     })
   }
 
@@ -48,7 +68,7 @@ class App extends Component {
     return (
       <div className="app">
         <Header />
-        <NoteContainer notes={notes} chosen={theNote} edited={editNote} filtered={filterNotes()} handleChosen={this.handleChosen} handleEdit={this.handleEdit}/>
+        <NoteContainer notes={notes} chosen={theNote} edited={editNote} filtered={filterNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave}/>
       </div>
     );
   }

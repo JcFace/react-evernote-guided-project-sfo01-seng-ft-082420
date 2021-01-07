@@ -13,9 +13,9 @@ import Instructions from './Instructions';
 class Content extends Component {
   renderContent = () => {
     if (this.props.edited) {
-      return <NoteEditor chosen={this.props.chosen} handleEdit={this.props.handleEdit}/>;
+      return <NoteEditor chosen={this.props.chosen} handleEditSave={this.props.handleEditSave}/>;
     } else if (this.props.chosen) {
-      return <NoteViewer chosen={this.props.chosen}/>;
+      return <NoteViewer chosen={this.props.chosen} handleEditClick={this.props.handleEditClick}/>;
     } else {
       return <Instructions />;
     }
