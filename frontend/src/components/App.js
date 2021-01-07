@@ -44,7 +44,8 @@ class App extends Component {
 
   handleEditSave = (e, chosen) => {
     e.preventDefault()
-    return fetch(notesURL + `/${chosen.id}`, {
+    console.log(chosen.id)
+    return fetch(`http://localhost:3000/api/v1/notes/${chosen.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -57,18 +58,51 @@ class App extends Component {
       const newNote = this.state.notes.map(n => n.id === note.id ? note : n )
       this.setState({
         notes: newNote, 
-        editNote: false
+        editNote: false,
+        theNote: null
       })
     })
   }
 
+  cancelEdit = () => {
+    this.setState({
+      editNote: false
+    })
+  }
+
+  makeNote = (e) => {
+    let placeholder = {
+      title: "Create your Title",
+      body: "Don't forget the Body",
+      user_id: 1
+    }
+    this.postNote(notesURL, placeholder)
+    .then(placeholder => this.setState({
+      notes: [placeholder, ...this.state.notes],
+      theNote: placeholder
+    }))
+  }
+
+  postNote = (notesURL, placeholder) => {
+    return fetch(notesURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(placeholder)
+    })
+    .then(res => res.json())
+  }
+
+  
   render() {
     const { notes, theNote, editNote } = this.state
     const { filterNotes } = this
     return (
       <div className="app">
         <Header />
-        <NoteContainer notes={notes} chosen={theNote} edited={editNote} filtered={filterNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave}/>
+        <NoteContainer notes={notes} chosen={theNote} edited={editNote} filtered={filterNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave} cancel={this.cancelEdit} makeNote={this.makeNote}/>
       </div>
     );
   }
