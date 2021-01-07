@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import NoteList from './NoteList';
 
-class Sidebar extends Component {
-  render() {
+const Sidebar  = (props) => {
     return (
       <div className='master-detail-element sidebar'>
-        <NoteList />
+        <NoteList notes={props.notes} filtered={props.filtered} handleChosen={props.handleChosen}/>
         <button>New</button>
       </div>
     );
-  }
 }
 
 export default Sidebar;
