@@ -24,10 +24,7 @@ class App extends Component {
     })
   }
 
-  getNotes = () => {
-    return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.filtered.toLowerCase()))
-  }
-
+  
   handleChosen = (note) => {
     // console.log(note)
     this.setState({
@@ -35,16 +32,16 @@ class App extends Component {
       editNote: false
     })
   }
-
+  
   handleEditClick = () => {
     this.setState({
       editNote: true
     })
   }
-
+  
   handleEditSave = (e, chosen) => {
     e.preventDefault()
-    console.log(chosen.id)
+    // console.log(chosen.id)
     return fetch(`${notesURL}/${chosen.id}`, {
       method: 'PATCH',
       headers: {
@@ -63,13 +60,13 @@ class App extends Component {
       })
     })
   }
-
+  
   cancelEdit = () => {
     this.setState({
       editNote: false
     })
   }
-
+  
   makeNote = () => {
     let placeholder = {
       title: "Create your Title",
@@ -82,7 +79,7 @@ class App extends Component {
       theNote: placeholder
     }))
   }
-
+  
   postNote = (notesURL, placeholder) => {
     return fetch(notesURL, {
       method: 'POST',
@@ -94,12 +91,18 @@ class App extends Component {
     })
     .then(res => res.json())
   }
-
+  
   searchNote = (value) => {
     this.setState({
       filtered: value
     })
   }
+
+  getNotes = () => {
+        return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.filtered.toLowerCase()))
+      }
+
+      
   render() {
     const { notes, theNote, editNote } = this.state
     const { getNotes } = this
