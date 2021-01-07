@@ -95,14 +95,18 @@ class App extends Component {
     .then(res => res.json())
   }
 
-  
+  searchNote = (value) => {
+    this.setState({
+      filtered: value
+    })
+  }
   render() {
     const { notes, theNote, editNote } = this.state
     const { getNotes } = this
     return (
       <div className="app">
         <Header />
-        <NoteContainer notes={notes} chosen={theNote} edited={editNote} get={getNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave} cancel={this.cancelEdit} makeNote={this.makeNote}/>
+        <NoteContainer notes={notes} chosen={theNote} edited={editNote} get={getNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave} cancel={this.cancelEdit} makeNote={this.makeNote} search={this.searchNote}/>
       </div>
     );
   }

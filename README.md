@@ -7,7 +7,7 @@ Your goal will be to complete the baseline deliverables using the provided start
 
 ## Requirements
 
-- [] Complete all of the *Deliverables*.
+- [x] Complete all of the *Deliverables*.
 - [] Build out at least 1 stretch goal feature.
 
 ## Setup
@@ -99,7 +99,7 @@ Look at the gif below to see how the app should look and behave. These are the b
 
 **Filtering Notes**
 
-- [ ] Implement the filter to search through your notes list by title.
+- [x] Implement the filter to search through your notes list by title.
 
 ![result](react-evernote-filter.gif)
 
