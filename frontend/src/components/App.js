@@ -70,7 +70,7 @@ class App extends Component {
     })
   }
 
-  makeNote = (e) => {
+  makeNote = () => {
     let placeholder = {
       title: "Create your Title",
       body: "Don't forget the Body",
