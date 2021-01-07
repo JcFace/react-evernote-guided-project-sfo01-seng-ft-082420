@@ -45,7 +45,7 @@ class App extends Component {
   handleEditSave = (e, chosen) => {
     e.preventDefault()
     console.log(chosen.id)
-    return fetch(`http://localhost:3000/api/v1/notes/${chosen.id}`, {
+    return fetch(`${notesURL}/${chosen.id}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
