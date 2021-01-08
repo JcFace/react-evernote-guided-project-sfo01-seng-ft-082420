@@ -54,7 +54,7 @@ class App extends Component {
     .then(note => {
       const newNote = this.state.notes.map(n => n.id === note.id ? note : n )
       this.setState({
-        notes: newNote, 
+        notes: newNote,
         editNote: false,
         theNote: null
       })
@@ -99,7 +99,10 @@ class App extends Component {
   }
 
   getFiltered = () => {
-    return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.filtered.toLowerCase()))
+    return this.state.notes.filter(note => {
+     return note.body.toLowerCase().includes(this.state.filtered.toLowerCase()) || note.title.toLowerCase().includes(this.state.filtered.toLowerCase())
+    }
+    )  
   }
 
 
