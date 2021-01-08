@@ -100,9 +100,8 @@ class App extends Component {
 
   getFiltered = () => {
     return this.state.notes.filter(note => {
-     return note.body.toLowerCase().includes(this.state.filtered.toLowerCase()) || note.title.toLowerCase().includes(this.state.filtered.toLowerCase())
-    }
-    )  
+      return note.body.toLowerCase().includes(this.state.filtered.toLowerCase()) || note.title.toLowerCase().includes(this.state.filtered.toLowerCase())
+    }) 
   }
 
 
