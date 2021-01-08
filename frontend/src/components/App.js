@@ -98,18 +98,18 @@ class App extends Component {
     })
   }
 
-  getNotes = () => {
-        return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.filtered.toLowerCase()))
-      }
+  getFiltered = () => {
+    return this.state.notes.filter(note => note.title.toLowerCase().includes(this.state.filtered.toLowerCase()))
+  }
 
-      
+
   render() {
     const { notes, theNote, editNote } = this.state
-    const { getNotes } = this
+    const { getFiltered } = this
     return (
       <div className="app">
         <Header />
-        <NoteContainer notes={notes} chosen={theNote} edited={editNote} get={getNotes()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave} cancel={this.cancelEdit} makeNote={this.makeNote} search={this.searchNote}/>
+        <NoteContainer notes={notes} chosen={theNote} edited={editNote} get={getFiltered()} handleChosen={this.handleChosen} handleEditClick={this.handleEditClick} handleEditSave={this.handleEditSave} cancel={this.cancelEdit} makeNote={this.makeNote} search={this.searchNote}/>
       </div>
     );
   }
